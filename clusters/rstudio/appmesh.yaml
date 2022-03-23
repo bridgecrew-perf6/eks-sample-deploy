@@ -16,7 +16,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: eks/appmesh-controller
+      chart: "eks/appmesh-controller"
       sourceRef:
         kind: HelmRepository
         name: ekscharts
