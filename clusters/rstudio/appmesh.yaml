@@ -7,23 +7,23 @@ spec:
   interval: 1m
   url: https://aws.github.io/eks-charts/
 ---
-# apiVersion: helm.toolkit.fluxcd.io/v2beta1
-# kind: HelmRelease
-# metadata:
-#   name: appmesh
-#   namespace: appmesh-system
-# spec:
-#   interval: 1m
-#   releaseName: appmesh
-#   chart:
-#     spec:
-#       chart: "eks/appmesh-controller"
-#       sourceRef:
-#         kind: HelmRepository
-#         name: ekscharts
-#         namespace: flux-system
-#       interval: 1m
-#   values:
-#     serviceAccount:
-#       create: false
-#       name: appmesh-controller
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: appmesh
+  namespace: appmesh-system
+spec:
+  interval: 1m
+  releaseName: appmesh
+  chart:
+    spec:
+      chart: "eks/appmesh-controller"
+      sourceRef:
+        kind: HelmRepository
+        name: ekscharts
+        namespace: flux-system
+      interval: 1m
+  values:
+    serviceAccount:
+      create: false
+      name: appmesh-controller
