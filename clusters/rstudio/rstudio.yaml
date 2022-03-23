@@ -18,3 +18,60 @@ spec:
         ports:
         - containerPort: 8787
 ---
+apiVersion: appmesh.k8s.aws/v1beta2
+kind: VirtualNode
+metadata:
+  name: rstudio-appserver
+  namespace: rstudio
+spec:
+  awsName: rstudio-appserver
+  podSelector:
+    matchLabels:
+      app: rstudio
+  listeners:
+    - portMapping:
+        port: 8787
+        protocol: http  
+  serviceDiscovery:
+    dns:
+      hostname: rstudio.rstudio.svc.cluster.local
+---
+apiVersion: appmesh.k8s.aws/v1beta2
+kind: Mesh
+metadata:
+  name: rstudio
+spec:
+  namespaceSelector:
+    matchLabels:
+      mesh: rstudio
+---
+apiVersion: appmesh.k8s.aws/v1beta2
+kind: VirtualRouter
+metadata:
+  namespace: rstudio
+  name: rstudio
+spec:
+  awsName: rstudio-virtual-router
+  listeners:
+    - portMapping:
+        port: 4567
+        protocol: http
+  routes:
+    - name: route-to-rstudio
+      httpRoute:
+        match:
+          prefix: /
+        action:
+          weightedTargets:
+            - virtualNodeRef: 
+                name: rstudio-appserver
+              weight: 1
+        retryPolicy:
+            maxRetries: 2
+            perRetryTimeout:
+                unit: ms
+                value: 2000
+            httpRetryEvents:
+                - server-error
+                - client-error
+                - gateway-error
