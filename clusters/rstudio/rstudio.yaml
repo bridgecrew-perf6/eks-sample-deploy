@@ -2,6 +2,7 @@ apiVersion: appmesh.k8s.aws/v1beta2
 kind: Mesh
 metadata:
   name: rstudio
+  namespace: rstudio
 spec:
   namespaceSelector:
     matchLabels:
