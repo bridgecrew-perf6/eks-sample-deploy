@@ -1,3 +1,12 @@
+apiVersion: appmesh.k8s.aws/v1beta2
+kind: Mesh
+metadata:
+  name: rstudio
+spec:
+  namespaceSelector:
+    matchLabels:
+      mesh: rstudio
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -35,15 +44,6 @@ spec:
   serviceDiscovery:
     dns:
       hostname: rstudio.rstudio.svc.cluster.local
----
-apiVersion: appmesh.k8s.aws/v1beta2
-kind: Mesh
-metadata:
-  name: rstudio
-spec:
-  namespaceSelector:
-    matchLabels:
-      mesh: rstudio
 ---
 apiVersion: appmesh.k8s.aws/v1beta2
 kind: VirtualRouter
