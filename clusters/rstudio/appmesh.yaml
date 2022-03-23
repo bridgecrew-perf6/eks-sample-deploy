@@ -14,10 +14,10 @@ metadata:
   namespace: appmesh-system
 spec:
   interval: 1m
-  releaseName: appmesh
+  releaseName: appmesh-controller
   chart:
     spec:
-      chart: "eks/appmesh-controller"
+      chart: appmesh-controller
       sourceRef:
         kind: HelmRepository
         name: ekscharts
