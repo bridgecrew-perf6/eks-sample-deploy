@@ -27,3 +27,4 @@ spec:
     serviceAccount:
       create: false
       name: appmesh-controller
+    region: us-east-2
