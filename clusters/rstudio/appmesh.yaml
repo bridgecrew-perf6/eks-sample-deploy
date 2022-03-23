@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m
-  url: https://aws.github.io/eks-charts
+  url: https://aws.github.io/eks-charts/
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -14,6 +14,7 @@ metadata:
   namespace: appmesh-system
 spec:
   interval: 1m
+  releaseName: appmesh
   chart:
     spec:
       chart: "eks/appmesh-controller"
