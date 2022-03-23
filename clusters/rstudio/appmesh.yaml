@@ -23,8 +23,6 @@ spec:
         namespace: flux-system
       interval: 1m
   values:
-    image:
-      controller:
-        serviceAccount:
-          create: false
-          name: appmesh-controller
+    serviceAccount:
+      create: false
+       name: appmesh-controller
