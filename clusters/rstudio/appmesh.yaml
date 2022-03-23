@@ -13,7 +13,7 @@ metadata:
   name: appmesh
   namespace: appmesh-system
 spec:
-  interval: 5m
+  interval: 1m
   chart:
     spec:
       chart: "eks/appmesh-controller"
@@ -25,4 +25,4 @@ spec:
   values:
     serviceAccount:
       create: false
-       name: appmesh-controller
+      name: appmesh-controller
