@@ -45,24 +45,24 @@ spec:
   selector:
     app: rstudio
 ---
-apiVersion: appmesh.k8s.aws/v1beta2
-kind: VirtualNode
-metadata:
-  name: rstudio-appserver
-  namespace: rstudio
-spec:
-  awsName: rstudio-appserver
-  podSelector:
-    matchLabels:
-      app: rstudio
-  listeners:
-    - portMapping:
-        port: 8787
-        protocol: http  
-  serviceDiscovery:
-    dns:
-      hostname: rstudio.rstudio.svc.cluster.local
----
+# apiVersion: appmesh.k8s.aws/v1beta2
+# kind: VirtualNode
+# metadata:
+#   name: rstudio-appserver
+#   namespace: rstudio
+# spec:
+#   awsName: rstudio-appserver
+#   podSelector:
+#     matchLabels:
+#       app: rstudio
+#   listeners:
+#     - portMapping:
+#         port: 8787
+#         protocol: http  
+#   serviceDiscovery:
+#     dns:
+#       hostname: rstudio.rstudio.svc.cluster.local
+# ---
 # apiVersion: appmesh.k8s.aws/v1beta2
 # kind: VirtualRouter
 # metadata:
