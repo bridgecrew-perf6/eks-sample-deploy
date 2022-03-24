@@ -37,6 +37,12 @@ spec:
       extraArgs:
         http: 8080
         https: 8081
-      allowPrivilegeEscalation: false
+      image:
+        runAsUser: 101
+        allowPrivilegeEscalation: false
+      external:
+        enabled: false
+      internal:
+        enabled: true
 
 
