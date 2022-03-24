@@ -23,7 +23,7 @@ spec:
 apiVersion: appmesh.k8s.aws/v1beta2
 kind: GatewayRoute
 metadata:
-  name: gateway-route-frontend
+  name: gateway-route-rstudio
   namespace: rstudio
 spec:
   httpRoute:
@@ -33,5 +33,5 @@ spec:
       target:
         virtualService:
           virtualServiceRef:
-            name: rstudio
+            name: rstudio-ingress-gw
 ---
