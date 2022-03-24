@@ -1,0 +1,11 @@
+apiVersion: appmesh.k8s.aws/v1beta2
+kind: VirtualService
+metadata:
+  name: rstudio
+  namespace: rstudio
+spec:
+  awsName: rstudio.rstudio.svc.cluster.local
+  provider:
+    virtualNode:
+      virtualNodeRef:
+        name: rstudio-appserver

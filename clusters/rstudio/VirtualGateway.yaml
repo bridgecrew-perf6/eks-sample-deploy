@@ -1,0 +1,37 @@
+---
+apiVersion: appmesh.k8s.aws/v1beta2
+kind: VirtualGateway
+metadata:
+  name: rstudio-ingress-gw
+  namespace: rstudio
+spec:
+  namespaceSelector:
+    matchLabels:
+      gateway: rstudio
+  podSelector:
+    matchLabels:
+      app: rstudio
+  listeners:
+    - portMapping:
+        port: 80
+        protocol: http
+  logging:
+    accessLog:
+      file:
+        path: /dev/stdout
+---
+apiVersion: appmesh.k8s.aws/v1beta2
+kind: GatewayRoute
+metadata:
+  name: gateway-route-frontend
+  namespace: rstudio
+spec:
+  httpRoute:
+    match:
+      prefix: "/"
+    action:
+      target:
+        virtualService:
+          virtualServiceRef:
+            name: rstudio
+---
