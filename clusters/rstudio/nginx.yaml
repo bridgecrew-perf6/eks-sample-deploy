@@ -17,7 +17,7 @@ spec:
   releaseName: ingress-nginx
   chart:
     spec:
-      chart: ingress-nginx/ingress-nginx
+      chart: ingress-nginx
       sourceRef:
         kind: HelmRepository
         name: ingress-nginx
