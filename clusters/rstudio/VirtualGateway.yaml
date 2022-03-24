@@ -20,18 +20,18 @@ spec:
       file:
         path: /dev/stdout
 ---
-apiVersion: appmesh.k8s.aws/v1beta2
-kind: GatewayRoute
-metadata:
-  name: gateway-route-rstudio
-  namespace: rstudio
-spec:
-  httpRoute:
-    match:
-      prefix: "/"
-    action:
-      target:
-        virtualService:
-          virtualServiceRef:
-            name: rstudio-ingress-gw
----
+# apiVersion: appmesh.k8s.aws/v1beta2
+# kind: GatewayRoute
+# metadata:
+#   name: gateway-route-rstudio
+#   namespace: rstudio
+# spec:
+#   httpRoute:
+#     match:
+#       prefix: "/"
+#     action:
+#       target:
+#         virtualService:
+#           virtualServiceRef:
+#             name: rstudio-vs
+# ---
