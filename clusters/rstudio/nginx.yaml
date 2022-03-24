@@ -1,35 +1,42 @@
-# apiVersion: source.toolkit.fluxcd.io/v1beta1
-# kind: HelmRepository
-# metadata:
-#   name: ingress-nginx
-#   namespace: flux-system
-# spec:
-#   interval: 1m
-#   url: https://kubernetes.github.io/ingress-nginx
-# ---
-# apiVersion: helm.toolkit.fluxcd.io/v2beta1
-# kind: HelmRelease
-# metadata:
-#   name: nginx
-#   namespace: rstudio
-# spec:
-#   interval: 1m
-#   releaseName: ingress-nginx
-#   chart:
-#     spec:
-#       chart: ingress-nginx
-#       sourceRef:
-#         kind: HelmRepository
-#         name: ingress-nginx
-#         namespace: flux-system
-#       interval: 1m
-#   # values:
-#   #   controller:
-#   #     metrics:
-#   #       enabled: true
-#   #       service:
-#   #         annotations:
-#   #           prometheus.io/scrape: true
-#   #           prometheus.io/port: "10254"
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: ingress-nginx
+  namespace: flux-system
+spec:
+  interval: 1m
+  url: https://kubernetes.github.io/ingress-nginx
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nginx
+  namespace: rstudio
+spec:
+  interval: 1m
+  releaseName: ingress-nginx
+  chart:
+    spec:
+      chart: ingress-nginx
+      sourceRef:
+        kind: HelmRepository
+        name: ingress-nginx
+        namespace: flux-system
+      interval: 1m
+  values:
+    controller:
+      # metrics:
+      #   enabled: true
+      #   service:
+      #     annotations:
+      #       prometheus.io/scrape: true
+      #       prometheus.io/port: "10254"
+      containerPort:
+        http: 8080
+        https: 8081
+      extraArgs:
+        http: 8080
+        https: 8081
+      allowPrivilegeEscalation: false
 
 
