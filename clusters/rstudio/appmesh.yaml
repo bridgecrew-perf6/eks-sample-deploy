@@ -1,30 +1,30 @@
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: HelmRepository
-metadata:
-  name: ekscharts
-  namespace: flux-system
-spec:
-  interval: 1m
-  url: https://aws.github.io/eks-charts/
----
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
-metadata:
-  name: appmesh
-  namespace: appmesh-system
-spec:
-  interval: 1m
-  releaseName: appmesh-controller
-  chart:
-    spec:
-      chart: appmesh-controller
-      sourceRef:
-        kind: HelmRepository
-        name: ekscharts
-        namespace: flux-system
-      interval: 1m
-  values:
-    serviceAccount:
-      create: false
-      name: appmesh-controller
-    region: us-east-2
+# apiVersion: source.toolkit.fluxcd.io/v1beta1
+# kind: HelmRepository
+# metadata:
+#   name: ekscharts
+#   namespace: flux-system
+# spec:
+#   interval: 1m
+#   url: https://aws.github.io/eks-charts/
+# ---
+# apiVersion: helm.toolkit.fluxcd.io/v2beta1
+# kind: HelmRelease
+# metadata:
+#   name: appmesh
+#   namespace: appmesh-system
+# spec:
+#   interval: 1m
+#   releaseName: appmesh-controller
+#   chart:
+#     spec:
+#       chart: appmesh-controller
+#       sourceRef:
+#         kind: HelmRepository
+#         name: ekscharts
+#         namespace: flux-system
+#       interval: 1m
+#   values:
+#     serviceAccount:
+#       create: false
+#       name: appmesh-controller
+#     region: us-east-2
