@@ -28,41 +28,26 @@ spec:
         ports:
         - containerPort: 8787
 ---
-apiVersion: v1
-kind: Service
+
+
+apiVersion: appmesh.k8s.aws/v1beta2
+kind: VirtualNode
 metadata:
-  name: rstudio-gateway
+  name: rstudio-appserver
   namespace: rstudio
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: "alb"
-    service.beta.kubernetes.io/aws-load-balancer-internal: (http://service.beta.kubernetes.io/aws-load-balancer-internal:) "true"
 spec:
-  type: LoadBalancer
-  ports:
-    - port: 80
-      targetPort: 8088
-      name: http
-  selector:
-    app: rstudio
+  awsName: rstudio-appserver
+  podSelector:
+    matchLabels:
+      app: rstudio
+  listeners:
+    - portMapping:
+        port: 8787
+        protocol: http  
+  serviceDiscovery:
+    dns:
+      hostname: rstudio.rstudio.svc.cluster.local
 ---
-# apiVersion: appmesh.k8s.aws/v1beta2
-# kind: VirtualNode
-# metadata:
-#   name: rstudio-appserver
-#   namespace: rstudio
-# spec:
-#   awsName: rstudio-appserver
-#   podSelector:
-#     matchLabels:
-#       app: rstudio
-#   listeners:
-#     - portMapping:
-#         port: 8787
-#         protocol: http  
-#   serviceDiscovery:
-#     dns:
-#       hostname: rstudio.rstudio.svc.cluster.local
-# ---
 # apiVersion: appmesh.k8s.aws/v1beta2
 # kind: VirtualRouter
 # metadata:
