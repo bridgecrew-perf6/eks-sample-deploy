@@ -16,8 +16,6 @@ spec:
       containers:
       - name: rstudio
         image: rocker/rstudio
-        ports:
-        - containerPort: 8787
       - name: haproxy
         image: public.ecr.aws/docker/library/haproxy:latest
         ports:
