@@ -42,7 +42,7 @@ data:
     listen haproxy
       mode http
       bind *:8088
-      server s1 localhost:8787
+      server s1 127.0.0.1:8787
 ---
 
 apiVersion: v1
