@@ -27,7 +27,39 @@ spec:
         image: rocker/rstudio
         ports:
         - containerPort: 8787
+      - name: haproxy
+        image: public.ecr.aws/docker/library/haproxy:latest
+        ports:
+          - containerPort: 8080
+        volumeMounts:
+          - name: haproxy
+            mountPath: /usr/local/etc/haproxy
+            readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: haproxy
+            items:
+              - key: haproxy.cfg
+                path: haproxy.cfg
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: haproxy
+data:
+  haproxy.cfg: |
+    frontend haproxy
+      mode http
+      log global
+      timeout client 30s
+      bind: *:8080
+      default_backend rstudio
+    backend rstudio
+      mode http
+      server s localhost:8787
+
+
 
 
 # apiVersion: appmesh.k8s.aws/v1beta2
