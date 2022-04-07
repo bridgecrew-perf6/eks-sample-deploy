@@ -47,7 +47,7 @@ data:
       default_backend rstudio
     backend rstudio
       mode http
-      timeout 30s
+      timeout server 30s
       server s localhost:8787
 ---
 apiVersion: v1
