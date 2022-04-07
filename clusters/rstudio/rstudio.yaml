@@ -1,12 +1,3 @@
-# apiVersion: appmesh.k8s.aws/v1beta2
-# kind: Mesh
-# metadata:
-#   name: rstudio
-#   namespace: rstudio
-# spec:
-#   namespaceSelector:
-#     matchLabels:
-#       mesh: rstudio
 ---
 apiVersion: apps/v1
 kind: Deployment
