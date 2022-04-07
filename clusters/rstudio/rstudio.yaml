@@ -45,7 +45,7 @@ data:
       mode http
       log global
       timeout client 30s
-      bind: *:8080
+      bind *:8080
       default_backend rstudio
     backend rstudio
       mode http
