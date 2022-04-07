@@ -50,55 +50,21 @@ data:
     backend rstudio
       mode http
       server s localhost:8787
+---
+ apiVersion: v1
+kind: Service
+metadata:
+  name: rstudio-gateway
+  namespace: rstudio
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "alb"
+    service.beta.kubernetes.io/aws-load-balancer-internal: (http://service.beta.kubernetes.io/aws-load-balancer-internal:) "true"
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8088
+      name: http
+  selector:
+    app: rstudio
 
-
-
-
-# apiVersion: appmesh.k8s.aws/v1beta2
-# kind: VirtualNode
-# metadata:
-#   name: rstudio-appserver
-#   namespace: rstudio
-# spec:
-#   awsName: rstudio-appserver
-#   podSelector:
-#     matchLabels:
-#       app: rstudio
-#   listeners:
-#     - portMapping:
-#         port: 8787
-#         protocol: http  
-#   serviceDiscovery:
-#     dns:
-#       hostname: rstudio.rstudio.svc.cluster.local
-# ---
-# apiVersion: appmesh.k8s.aws/v1beta2
-# kind: VirtualRouter
-# metadata:
-#   namespace: rstudio
-#   name: rstudio
-# spec:
-#   awsName: rstudio-virtual-router
-#   listeners:
-#     - portMapping:
-#         port: 4567
-#         protocol: http
-#   routes:
-#     - name: route-to-rstudio
-#       httpRoute:
-#         match:
-#           prefix: /
-#         action:
-#           weightedTargets:
-#             - virtualNodeRef: 
-#                 name: rstudio-appserver
-#               weight: 1
-#         retryPolicy:
-#             maxRetries: 2
-#             perRetryTimeout:
-#                 unit: ms
-#                 value: 2000
-#             httpRetryEvents:
-#                 - server-error
-#                 - client-error
-#                 - gateway-error
