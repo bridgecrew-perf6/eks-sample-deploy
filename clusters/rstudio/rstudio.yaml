@@ -27,8 +27,8 @@ spec:
             mountPath: /usr/local/etc/haproxy
             readOnly: true
       volumes:
-        - name: config
-          configMap:
+        - name: 
+          configMap: 
             name: haproxy
             items:
               - key: haproxy.cfg
