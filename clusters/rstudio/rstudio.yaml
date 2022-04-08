@@ -61,6 +61,7 @@ data:
     listen haproxy
       mode http
       bind *:8088
+      bind *.9099 ssl crt /etc/ssl/certs/mysite.pem
       server s1 127.0.0.1:8787
 ---
 
