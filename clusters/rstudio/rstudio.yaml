@@ -31,7 +31,6 @@ spec:
         volumeMounts:
           - name: persistent-efs
             mountPath: /data
-      volumes:
       - name: haproxy
         image: public.ecr.aws/docker/library/haproxy:latest
         ports:
@@ -40,6 +39,7 @@ spec:
           - name: haproxy
             mountPath: /usr/local/etc/haproxy
             readOnly: true
+      Volumes:
         - name: haproxy
           configMap: 
             name: haproxy
