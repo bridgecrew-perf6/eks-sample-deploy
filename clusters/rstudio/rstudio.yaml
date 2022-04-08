@@ -1,3 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: efs-claim
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: efs-sc
+  resources:
+    requests:
+      storage: 50Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -24,6 +35,8 @@ spec:
           - name: haproxy
             mountPath: /usr/local/etc/haproxy
             readOnly: true
+          - name: persistent-efs
+            mountPath: /data
       volumes:
         - name: haproxy
           configMap: 
@@ -31,6 +44,8 @@ spec:
             items:
               - key: haproxy.cfg
                 path: haproxy.cfg
+        - name: persistent-efs
+          persistentVolumnClaim: efs-claim
 ---
 apiVersion: v1
 kind: ConfigMap
