@@ -28,6 +28,9 @@ spec:
       containers:
       - name: rstudio
         image: rocker/rstudio
+        volumeMounts:
+          - name: persistent-efs
+            persistentVolumnClaim: efs-claim
       - name: haproxy
         image: public.ecr.aws/docker/library/haproxy:latest
         ports:
@@ -45,8 +48,7 @@ spec:
             items:
               - key: haproxy.cfg
                 path: haproxy.cfg
-        - name: persistent-efs
-          persistentVolumnClaim: efs-claim
+
 ---
 apiVersion: v1
 kind: ConfigMap
