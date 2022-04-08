@@ -13,6 +13,7 @@ spec:
     group: awspca.cert-manager.io
     kind: AWSPCAClusterIssuer
     name: root-ca
+    namespace: cert-manager
   renewBefore: 360h0m0s
   secretName: rsa-example-cert-2048
   usages:
