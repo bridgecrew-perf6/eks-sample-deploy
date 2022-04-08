@@ -39,7 +39,9 @@ spec:
           - name: haproxy
             mountPath: /usr/local/etc/haproxy
             readOnly: true
-      Volumes:
+          - name: persistent-efs
+            mountPath: /data
+      volumes:
         - name: haproxy
           configMap: 
             name: haproxy
