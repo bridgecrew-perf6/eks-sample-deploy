@@ -2,17 +2,17 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: aws-cluster-issuer
+  name: aws-privateca-issuer
   namespace: cert-manager
 spec:
   interval: 1m
-  releaseName: aws-lb-controller
+  releaseName: aws-privateca-issuer
   chart:
     spec:
-      chart:  aws-load-balancer-controller
+      chart: aws-privateca-issuer
       sourceRef:
         kind: HelmRepository
-        name: ekscharts
+        name: awspca
         namespace: flux-system
       interval: 1m
 ---
