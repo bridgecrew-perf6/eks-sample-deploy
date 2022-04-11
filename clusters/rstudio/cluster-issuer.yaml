@@ -1,26 +1,26 @@
 
-# apiVersion: helm.toolkit.fluxcd.io/v2beta1
-# kind: HelmRelease
-# metadata:
-#   name: aws-privateca-issuer
-#   namespace: cert-manager
-# spec:
-#   interval: 1m
-#   releaseName: aws-privateca-issuer
-#   chart:
-#     spec:
-#       chart: aws-privateca-issuer
-#       sourceRef:
-#         kind: HelmRepository
-#         name: awspca
-#         namespace: flux-system
-#       interval: 1m
-# ---
-# apiVersion: awspca.cert-manager.io/v1beta1
-# kind: AWSPCAClusterIssuer
-# metadata:
-#           name: root-ca
-#           namespace: cert-manager
-# spec:
-#           arn: arn:aws:acm-pca:us-east-2:365268860483:certificate-authority/6ab588e8-de72-42a3-88ca-88c6fc1d37b1
-#           region: us-east-2
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: aws-privateca-issuer
+  namespace: cert-manager
+spec:
+  interval: 1m
+  releaseName: aws-privateca-issuer
+  chart:
+    spec:
+      chart: aws-privateca-issuer
+      sourceRef:
+        kind: HelmRepository
+        name: awspca
+        namespace: flux-system
+      interval: 1m
+---
+apiVersion: awspca.cert-manager.io/v1beta1
+kind: AWSPCAClusterIssuer
+metadata:
+          name: root-ca
+          namespace: cert-manager
+spec:
+          arn: arn:aws:acm-pca:us-east-2:365268860483:certificate-authority/6ab588e8-de72-42a3-88ca-88c6fc1d37b1
+          region: us-east-2
