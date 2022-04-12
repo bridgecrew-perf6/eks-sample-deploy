@@ -40,7 +40,7 @@ spec:
             mountPath: /usr/local/etc/haproxy
             readOnly: true
           - name: certs
-            mountPath: /etc/ssl/certs/
+            mountPath: /etc/ssl/certs
             readOnly: true
       volumes:
         - name: haproxy
