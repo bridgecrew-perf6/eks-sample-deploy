@@ -67,8 +67,7 @@ metadata:
 data:
   haproxy.cfg: |
     listen haproxy
-      mode http
-      bind *:8088
+      mode https
       bind *:9099 ssl crt /etc/ssl/certs/private.pem
       server s1 127.0.0.1:8787
 ---
