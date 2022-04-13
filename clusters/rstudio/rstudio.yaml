@@ -111,8 +111,7 @@ metadata:
     alb.ingress.kubernetes.io/group.name: rstudio.ingress.group
 spec:
   rules:
-  - host: "*"
-    http:
+  - http:
       paths:
       - pathType: Prefix
         path: "/"
