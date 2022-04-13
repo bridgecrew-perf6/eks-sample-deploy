@@ -18,6 +18,7 @@ metadata:
   name: rstudio
   namespace: rstudio
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: rstudio
@@ -26,7 +27,6 @@ spec:
       labels:
         app: rstudio
     spec:
-      replicas: 3
       containers:
       - name: rstudio
         image: rocker/rstudio
