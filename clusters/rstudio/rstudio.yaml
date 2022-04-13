@@ -26,6 +26,7 @@ spec:
       labels:
         app: rstudio
     spec:
+      replicas: 3
       containers:
       - name: rstudio
         image: rocker/rstudio
@@ -106,6 +107,12 @@ metadata:
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:365268860483:certificate/1572418a-715e-406e-9f6f-a5e17870b40b
     alb.ingress.kubernetes.io/backend-protocol: HTTPS
     alb.ingress.kubernetes.io/success-codes: 200,302
+    alb.ingress.kubernetes.io/target-group-attributes: load_balancing.algorithm.type=least_outstanding_requests
+
+    # alb.ingress.kubernetes.io/auth-type: cognito
+    # alb.ingress.kubernetes.io/auth-idp-oidc: '{"issuer":"https://example.com","authorizationEndpoint":"https://authorization.example.com","tokenEndpoint":"https://token.example.com","userInfoEndpoint":"https://userinfo.example.com","secretName":"my-k8s-secret"}'
+
+
 spec:
   rules:
   - http:
