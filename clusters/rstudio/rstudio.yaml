@@ -104,10 +104,7 @@ metadata:
     name: rstudio-ingress
   namespace: rstudio
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: "alb"
-    # service.beta.kubernetes.io/aws-load-balancer-internal: "true"
-    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
-    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: https
+    kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/group.name: rstudio.ingress.group
 spec:
   rules:
