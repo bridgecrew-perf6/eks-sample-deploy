@@ -73,7 +73,7 @@ data:
       mode http
       bind *:8080
       bind *:9099 ssl crt /etc/ssl/certs/private.pem
-      http-request redirect scheme https unless { ssl_fc }d
+      http-request redirect scheme https unless { ssl_fc }
       server s1 127.0.0.1:8787
 ---
 

@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../dynamodb/msk-lambda-dynamodb-data-ingestion"
+		},
+		{
+			"path": "../../../../eksctl"
+		},
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../../appmesh-rstudio-eks"
+		}
+	],
+	"settings": {}
+}
