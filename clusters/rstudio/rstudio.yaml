@@ -30,6 +30,12 @@ spec:
       containers:
       - name: rstudio
         image: rocker/rstudio
+        env:
+          - name: PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: rstudio
+                key: password
         volumeMounts:
           - name: persistent-efs
             mountPath: /data
